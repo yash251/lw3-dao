@@ -40,4 +40,9 @@ contract CryptoDevsDAO is Ownable {
         nftMarketplace = IFakeNFTMarketplace(_nftMarketplace);
         cryptoDevsNFT = ICryproDevsNFT(_cryptoDevsNFT);
     }
+
+    modifier nftHolderOnly() {
+        require(cryptoDevsNFT.balanceOf(msg.sender) > 0, "Not a DAO Member");
+        _;
+    }
 }
