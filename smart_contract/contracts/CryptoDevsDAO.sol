@@ -20,4 +20,19 @@ interface ICryproDevsNFT {
         returns (uint256);
 }
 
-contract CryptoDevsDAO is Ownable {}
+contract CryptoDevsDAO is Ownable {
+    IFakeNFTMarketplace nftMarketplace;
+    ICryptoDevsNFT cryptoDevsNFT;
+
+    struct Proposal {
+        uint256 nftTokenId;
+        uint256 deadline;
+        uint256 yayVotes;
+        uint256 nayVotes;
+        bool executed;
+        mapping(uint256 => bool) voters;
+    }
+
+    mapping(uint256 => Proposal) public proposals;
+    uint256 public numProposals;
+}
