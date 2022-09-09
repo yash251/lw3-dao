@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.4;
 
 contract FakeNFTMarketplace {
     mapping(uint256 => address) public tokens; //mapping of Fake TokenID to Owner addresses
