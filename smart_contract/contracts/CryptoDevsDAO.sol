@@ -45,4 +45,20 @@ contract CryptoDevsDAO is Ownable {
         require(cryptoDevsNFT.balanceOf(msg.sender) > 0, "Not a DAO Member");
         _;
     }
+
+    function createProposal(uint256 _nftTokenId)
+        external
+        nftHolderOnly
+        returns (uint256)
+    {
+        require(nftMarketplace.available(_nftTokenId), "NFT not for sale");
+        Proposal storage proposal = proposals[numProposals];
+
+        proposal.nftTokenId = _nftTokenId;
+        proposal.deadline = block.timestamp + 5 minutes;
+
+        numProposals++;
+
+        return numProposals - 1;
+    }
 }
