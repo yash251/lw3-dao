@@ -100,4 +100,16 @@ contract CryptoDevsDAO is Ownable {
             proposal.nayVotes += 1;
         }
     }
+
+    modifier inactiveProposalOnly(uint256 proposalIndex) {
+        require(
+            proposals[proposalIndex].deadline <= block.timestamp,
+            "Deadline not exceeded"
+        );
+        require(
+            proposals[proposalIndex].executed == false,
+            "Proposal already executed"
+        );
+        _;
+    }
 }
