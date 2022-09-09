@@ -131,4 +131,8 @@ contract CryptoDevsDAO is Ownable {
     function withdrawEther() external onlyOwner {
         payable(owner()).transfer(address(this).balance);
     }
+
+    receive() external payable {}
+
+    fallback() external payable {}
 }
