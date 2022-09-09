@@ -69,4 +69,9 @@ contract CryptoDevsDAO is Ownable {
         );
         _;
     }
+
+    enum Vote {
+        YAY,
+        NAY
+    }
 }
