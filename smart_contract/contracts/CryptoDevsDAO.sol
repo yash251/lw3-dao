@@ -61,4 +61,12 @@ contract CryptoDevsDAO is Ownable {
 
         return numProposals - 1;
     }
+
+    modifier activeProposalOnly(uint256 proposalIndex) {
+        require(
+            proposals[proposalIndex].deadline > block.timestamp,
+            "Deadline exceeded"
+        );
+        _;
+    }
 }
