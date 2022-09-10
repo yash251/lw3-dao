@@ -11,7 +11,7 @@ interface IFakeNFTMarketplace {
     function purchase(uint256 _tokenId) external payable;
 }
 
-interface ICryproDevsNFT {
+interface ICryptoDevsNFT {
     function balanceOf(address owner) external view returns (uint256);
 
     function tokenOfOwnerByIndex(address owner, uint256 index)
