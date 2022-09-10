@@ -136,3 +136,5 @@ contract CryptoDevsDAO is Ownable {
 
     fallback() external payable {}
 }
+
+// contract address = 0x5200aA2A72a96A3091831e812edC5De4ad6DB426
