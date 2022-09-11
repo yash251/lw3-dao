@@ -12,6 +12,18 @@ import {
 } from "../constants";
 
 export default function Home() {
+
+  const [treasuryBalance, setTreasuryBalance] = useState("0");
+  const [numProposals, setNumProposals] = useState("0");
+  const [proposals, setProposals] = useState([]);
+  const [nftBalance, setNftBalance] = useState(0);
+  const [fakeNftTokenId, setFakeNftTokenId] = useState("");
+  const [selectedTab, setSelectedTab] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [walletConnected, setWalletConnected] = useState(false);
+
+  const web3ModalRef = useRef();
+  
   return (
     <div className={styles.main}>
       <Head>
