@@ -23,7 +23,24 @@ export default function Home() {
   const [walletConnected, setWalletConnected] = useState(false);
 
   const web3ModalRef = useRef();
-  
+
+  const getProviderOrSigner = async (needSigner = false) => {
+    const provider = await web3ModalRef.current.connect();
+    const web3Provider = new providers.Web3Provider(provider);
+
+    const { chainId } = await web3Provider.getNetwork();
+    if (chainId !== 5) {
+      window.alert("Please switch to Goerli network");
+      throw new Error("Please switch to Goerli network");
+    }
+
+    if (needSigner) {
+      const signer = web3Provider.getSigner();
+      return signer;
+    }
+    return web3Provider;
+  };
+
   return (
     <div className={styles.main}>
       <Head>
