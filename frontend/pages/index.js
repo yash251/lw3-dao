@@ -49,6 +49,14 @@ export default function Home() {
     );
   };
 
+  const getCryptodevsNFTContractInstance = (providerOrSigner) => {
+    return new Contract(
+      CRYPTODEVS_NFT_CONTRACT_ADDRESS,
+      CRYPTODEVS_NFT_ABI,
+      providerOrSigner
+    );
+  };
+
   return (
     <div className={styles.main}>
       <Head>
