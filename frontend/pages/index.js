@@ -41,6 +41,14 @@ export default function Home() {
     return web3Provider;
   };
 
+  const getDaoContractInstance = (providerOrSigner) => {
+    return new Contract(
+      CRYPTODEVS_DAO_CONTRACT_ADDRESS,
+      CRYPTODEVS_DAO_ABI,
+      providerOrSigner
+    );
+  };
+
   return (
     <div className={styles.main}>
       <Head>
