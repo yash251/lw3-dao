@@ -90,6 +90,18 @@ export default function Home() {
     }
   };
 
+  const getUserNFTBalance = async () => {
+    try {
+      const signer = await getProviderOrSigner(true);
+      const nftContract = getCryptodevsNFTContractInstance(signer);
+      const balance = await nftContract.balanceOf(signer.getAddress());
+      setNftBalance(parseInt(balance.toString()));
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className={styles.main}>
       <Head>
