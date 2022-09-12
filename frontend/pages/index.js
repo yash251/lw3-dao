@@ -78,6 +78,18 @@ export default function Home() {
     }
   };
 
+  const getNumProposalsInDAO = async () => {
+    try {
+      const provider = await getProviderOrSigner();
+      const contract = getDaoContractInstance(provider);
+      const daoNumPropsals = await contract.numProposals();
+      setNumProposals(daoNumPropsals.toString());
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className={styles.main}>
       <Head>
