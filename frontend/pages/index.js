@@ -67,6 +67,17 @@ export default function Home() {
     }
   };
 
+  const getDAOTreasuryBalance = async () => {
+    try {
+      const provider = await getProviderOrSigner();
+      const balance = await provider.getBalance(CRYPTODEVS_DAO_CONTRACT_ADDRESS);
+      setTreasuryBalance(balance.toString());
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className={styles.main}>
       <Head>
