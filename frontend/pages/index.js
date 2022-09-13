@@ -102,6 +102,21 @@ export default function Home() {
     }
   };
 
+  const createProposal = async () => {
+    try {
+      const signer = await getProviderOrSigner(true);
+      const daoContract = getDaoContractInstance(signer);
+      const tx = await daoContract.createProposal(fakeNftTokenId);
+      setLoading(true);
+      await tx.wait();
+      await getNumProposalsInDAO();
+      setLoading(false);
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className={styles.main}>
       <Head>
