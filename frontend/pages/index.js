@@ -137,6 +137,21 @@ export default function Home() {
     }
   };
 
+  const fetchAllProposals = async () => {
+    try {
+      const proposals = [];
+      for (let i = 0; i < numProposals; i++) {
+        const proposal = await fetchProposalById(i);
+        proposals.push(proposal);
+      }
+      setProposals(proposals);
+      return proposals;
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className={styles.main}>
       <Head>
