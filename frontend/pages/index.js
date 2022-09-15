@@ -169,6 +169,21 @@ export default function Home() {
     }
   };
 
+  const executeProposal = async (proposalId) => {
+    try {
+      const signer = await getProviderOrSigner(true);
+      const daoContract = getDaoContractInstance(signer);
+      const txn = await daoContract.executeProposal(proposalId);
+      setLoading(true);
+      await txn.wait();
+      setLoading(false);
+      await fetchAllProposals();
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className={styles.main}>
       <Head>
