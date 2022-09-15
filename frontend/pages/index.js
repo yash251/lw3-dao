@@ -238,6 +238,65 @@ export default function Home() {
       );
     }
   }
+
+  function renderViewProposalsTab() {
+    if (loading) {
+      return (
+        <div className={styles.description}>
+          Loading... Waiting for transaction...
+        </div>
+      );
+    } else if (proposals.length === 0) {
+      return (
+        <div className={styles.description}>
+          No proposals have been created
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {proposals.map((p, index) => (
+            <div key={index} className={styles.proposalCard}>
+              <p>Proposal ID: {p.proposalId}</p>
+              <p>Fake NFT to Purchase: {p.nftTokenId}</p>
+              <p>Deadline: {p.deadline.toLocaleString()}</p>
+              <p>Yay Votes: {p.yayVotes}</p>
+              <p>Nay Votes: {p.nayVotes}</p>
+              <p>Executed?: {p.executed.toString()}</p>
+              {p.deadline.getTime() > Date.now() && !p.executed ? (
+                <div className={styles.flex}>
+                  <button
+                    className={styles.button2}
+                    onClick={() => voteOnProposal(p.proposalId, "YAY")}
+                  >
+                    Vote YAY
+                  </button>
+                  <button
+                    className={styles.button2}
+                    onClick={() => voteOnProposal(p.proposalId, "NAY")}
+                  >
+                    Vote NAY
+                  </button>
+                </div>
+              ) : p.deadline.getTime() < Date.now() && !p.executed ? (
+                <div className={styles.flex}>
+                  <button
+                    className={styles.button2}
+                    onClick={() => executeProposal(p.proposalId)}
+                  >
+                    Execute Proposal{" "}
+                    {p.yayVotes > p.nayVotes ? "(YAY)" : "(NAY)"}
+                  </button>
+                </div>
+              ) : (
+                <div className={styles.description}>Proposal Executed</div>
+              )}
+            </div>
+          ))}
+        </div>
+      );
+    }
+  }
   
   return (
     <div className={styles.main}>
