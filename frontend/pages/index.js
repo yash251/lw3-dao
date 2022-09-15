@@ -200,6 +200,12 @@ export default function Home() {
     }
   }, [walletConnected]);
 
+  useEffect(() => {
+    if (selectedTab === "View Proposals") {
+      fetchAllProposals();
+    };
+  }, [selectedTab]);
+  
   return (
     <div className={styles.main}>
       <Head>
