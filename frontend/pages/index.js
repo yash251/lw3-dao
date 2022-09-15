@@ -184,6 +184,22 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    if (!walletConnected) {
+      web3ModalRef.current = new Web3Modal({
+        network: 'goerli',
+        providerOptions: {},
+        disableInjectedProvider: false,
+      });
+
+      connectWallet().then(() => {
+        getDAOTreasuryBalance();
+        getUserNFTBalance();
+        getNumProposalsInDAO();
+      });
+    }
+  }, [walletConnected]);
+
   return (
     <div className={styles.main}>
       <Head>
