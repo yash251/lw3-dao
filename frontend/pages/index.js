@@ -205,6 +205,39 @@ export default function Home() {
       fetchAllProposals();
     };
   }, [selectedTab]);
+
+  function renderCreateProposalTab() {
+    if (loading) {
+      return (
+        <div className={styles.description}>
+          Loading...
+        </div>
+      );
+    }
+    else if (nftBalance === 0) {
+      return (
+        <div className={styles.description}>
+          You do not own any CryptoDevs NFTs. <br />
+          <b>You cannot create or vote on proposals</b>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className={styles.description}>
+          <label>Fake NFT Token ID to Purchase : </label>
+          <input
+            placeholder='0'
+            type='number'
+            onChange={(e) => setFakeNftTokenId(e.target.value)}
+          />
+          <button className={styles.button} onClick={createProposal}>
+            Create
+          </button>
+        </div>
+      );
+    }
+  }
   
   return (
     <div className={styles.main}>
