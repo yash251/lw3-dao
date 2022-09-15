@@ -297,6 +297,16 @@ export default function Home() {
       );
     }
   }
+
+  function renderTabs() {
+    if (selectedTab === "Create Proposal") {
+      return renderCreateProposalTab();
+    }
+    else if (selectedTab === "View Proposals") {
+      return renderViewProposalsTab();
+    }
+    return null;
+  }
   
   return (
     <div className={styles.main}>
